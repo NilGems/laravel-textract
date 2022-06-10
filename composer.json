@@ -1,6 +1,6 @@
 {
     "name": "nilgems/laravel-textract",
-    "description": "A Laravel 9 package to extract text from files like DOC, XL, Image, Pdf and more. I've developed this package by inspiring \"npm textract\".",
+    "description": "A Laravel package to extract text from files like DOC, XL, Image, Pdf and more. I've developed this package by inspiring \"npm textract\".",
     "type": "library",
     "keywords": [
         "laravel",
