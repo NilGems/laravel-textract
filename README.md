@@ -1,5 +1,5 @@
 # Laravel Textract
-A laravel 9 package to extract text from files like DOC, XL, Image, Pdf and more. I've developed this package by inspiring ["npm textract"](https://www.npmjs.com/package/textract). 
+A [Laravel 9](https://laravel.com/docs/9.x/) package to extract text from files like DOC, XL, Image, Pdf and more. I've developed this package by inspiring ["npm textract"](https://www.npmjs.com/package/textract). 
 
 [![PHP Version](https://img.shields.io/packagist/php-v/NilGems/laravel-textract)](https://www.php.net/downloads)
 [![Language Used](https://img.shields.io/github/languages/count/NilGems/laravel-textract)](https://github.com/NilGems/laravel-textract/search?l=php)
