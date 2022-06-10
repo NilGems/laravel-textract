@@ -22,19 +22,19 @@ the current content type to work this package-
 
 ### Install
 ``` 
-composer require nilgems/textract:^0.1
+composer require nilgems/php-textract
 ```
 ### Configuration
 You don't need to anything special for your laravel application to work with this
 package.
 
 ### Example
-Use the use ```Nilge\Textract\Textract``` facade to run the extractor. 
+Use the use ```Nilgems\PhpTextract\Textract``` facade to run the extractor. 
 
 Example 1: 
 ```
 ........
-use Nilge\Textract\Textract;
+use Nilgems\PhpTextract\Textract;
 
 Route::get('/textract', function(){
     return Textract::run({file_path});
