@@ -35,7 +35,7 @@ Textract::run(string $file_path, [string $job_id],[array $extra_data]);
 ##### Example 1: 
 You can extract text from supported file format.
 
-I want to recommend you to use the extractor in [Laravel Queue Job]() from better performance. In PHP there have a limitation of maximum execution time and maximum memory limit, in queue the process will run in background via CLI and you can set unlimited(-1) ```max_execution_time``` and unlimited(-1) ```max_memory_limit```;
+I want to recommend you to use the extractor in [Laravel Queue Job](https://laravel.com/docs/9.x/queues#creating-jobs) from better performance. In PHP there have a limitation of maximum execution time and maximum memory limit, in queue the process will run in background via CLI and you can set unlimited(-1) ```max_execution_time``` and unlimited(-1) ```max_memory_limit```;
 ```
 ........
 use Nilge\Textract\Textract;
