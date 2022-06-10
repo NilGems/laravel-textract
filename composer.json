@@ -3,7 +3,7 @@
     "description": "A text extraction package for laravel",
     "type": "library",
     "require": {
-        "php": "8.0",
+        "php": "^8.0",
         "ext-fileinfo": "*",
         "ext-zip": "*",
         "symfony/process": "6.1",
