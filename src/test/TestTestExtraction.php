@@ -4,7 +4,7 @@ namespace Nilgems\PhpTextract\test;
 
 class TestTestExtraction
 {
-    public CONST TEST_FILES = [
+    public const TEST_FILES = [
         'doc' => __DIR__ . '/../../storage/example.doc',
         'docx' => __DIR__ . '/../../storage/example.docx',
         'xls' => __DIR__ . '/../../storage/example.xls',
@@ -18,7 +18,7 @@ class TestTestExtraction
         'img_i18' => __DIR__ . '/../../storage/example-multi-languages.png',
     ];
 
-    public function process() {
-
+    public function process()
+    {
     }
 }

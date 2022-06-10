@@ -1,37 +1,76 @@
-# Laravel Textract
-A [Laravel 9](https://laravel.com/docs/9.x/) package to extract text from files like DOC, XL, Image, Pdf and more. I've developed this package by inspiring ["npm textract"](https://www.npmjs.com/package/textract). 
-
-[![PHP Version](https://img.shields.io/packagist/php-v/NilGems/laravel-textract)](https://www.php.net/downloads)
-[![Language Used](https://img.shields.io/github/languages/count/NilGems/laravel-textract)](https://github.com/NilGems/laravel-textract/search?l=php)
 [![Packagist](https://img.shields.io/packagist/v/nilgems/laravel-textract)](https://packagist.org/packages/nilgems/laravel-textract)
+# Laravel Textract
+A [Laravel](https://laravel.com) package to extract text from files like DOC, Excel, Image, Pdf and more.
 
+# Versions and compatibility
+
+- [Laravel 8](https://laravel.com) or higher is required.
+- [Php 7.4]() or higher is required
+
+### <img src="./blobs/danger.png?raw=true" alt="Note" width="18"> [Laravel 9](https://laravel.com) support is added.
 
 ### Supported file formats
 Following file formats is supported currently. You need to install proper extensions
 to your server to work with all the following extension related files. The package will 
-check file content MIME type before execute. So with the extension you have maintain
-the current content type to work this package-
-- HTML
-- TEXT
-- DOC
-- DOCX
-- XLS, XLSX, XLSM, XLTX, XLTM, XLT
-- CSV
-- PDF
-- Image
-  - Jpeg
-  - Pdf
-- ODT
-- ODS
-- RTF
+check file content MIME type before execute.
+- **HTML**
+- **TEXT**
+- **DOC**
+- **DOCX**
+- **XLS**, **XLSX**, **XLSM**, **XLTX**, **XLTM**, **XLT**
+- **CSV**
+- **PDF**
+- **Image**
+  - _jpeg_
+  - _png_
+- **ODT**
+- **ODS**
+- **RTF**
 
-### Install
+<img src="./blobs/warning.png?raw=true" alt="Note" width="12">***GIF*** and ***PPT*** support is under development. 
+
+**We are working hard to make this laravel plugin useful. If you found any issue please add a post on discussion.**
+
+### Installation
+
 ``` 
 composer require nilgems/laravel-textract
 ```
+Once installed you can do stuff like this:
+```
+# Run the extractor
+$output = Textract::run('/path/to/file.extension');
+
+# Display the extracted text
+echo $output->text;
+
+# Display the extracted text word count
+echo $output->word_count;
+
+# Display the extracted text with direct string conversion
+echo (string) $output;
+```
+
 ### Configuration
-You don't need to anything special for your laravel application to work with this
-package.
+
+- You can add **provider** in ```app.php``` under the ```config``` folder of your
+[Laravel](https://laravel.com) project. It's optional, the package automatically load the service provider in your application. 
+  ```
+  'providers' => [
+    ...
+    Nilgems\PhpTextract\Providers\ServiceProvider,
+    ...
+  ]
+  ```
+- Add **alias** in ```app.php``` under the ```config``` folder of your
+  [Laravel](https://laravel.com) project. It's optional, the package automatically load the ```facade``` in your application.
+  ```
+  'aliases' => [
+    ...
+    'Textract' => Nilgems\PhpTextract\Textract::class,
+    ...
+  ]
+  ```
 ### Example
 Use the ```Nilge\Textract\Textract``` facade to run the extractor. 
 ```
@@ -47,8 +86,7 @@ In ```php``` there have a restriction of execution time and memory limit defined
 use Nilge\Textract\Textract;
 
 Route::get('/textract', function(){
-    $file_path = ...;
-    return Textract::run($file_path);
+    return Textract::run('/path/to/image/example.png');
 });
 ........
 ```
@@ -60,8 +98,7 @@ If you need to specify languages in image file for better extraction output from
 use Nilge\Textract\Textract;
 
 Route::get('/textract', function(){
-    $image_file_path = ...;
-    return Textract::run($file_path, null, [
+    return Textract::run('/path/to/image/example.png', null, [
       'lang' => ['eng', 'jpn', 'spa']
     ]);
 });
@@ -71,10 +108,10 @@ Route::get('/textract', function(){
 - To enable the image extraction feature you need to install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
 - To enable the PDF extraction feature you need to install [pdftotext](http://www.xpdfreader.com/download.html)
 - To work properly, your server must have following php extensions installed -
-  - ext-fileinfo
-  - ext-zip
-  - ext-gd or ext-imagick
-  - ext-xml
+  - **ext-fileinfo**
+  - **ext-zip**
+  - **ext-gd** or **ext-imagick**
+  - **ext-xml**
 ### Tesseract OCR Installation
 #### <img src="https://raw.githubusercontent.com/NilGems/laravel-textract/master/blobs/ubuntu.png" width="12"  alt="Ubuntu" /> Ubuntu
 - Update the system: ```sudo apt update```
@@ -103,9 +140,6 @@ Route::get('/textract', function(){
 ---
 ## 💻 Tech Stack
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white) ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=plastic&logo=php&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=plastic&logo=amazon-aws&logoColor=white) ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=plastic&logo=vuedotjs&logoColor=%234FC08D) ![Vuetify](https://img.shields.io/badge/Vuetify-1867C0?style=plastic&logo=vuetify&logoColor=AEDDFF) ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=plastic&logo=npm&logoColor=white) ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=plastic&logo=jquery&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=plastic&logo=express&logoColor=%2361DAFB) ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=plastic&logo=laravel&logoColor=white) ![NuxtJS](https://img.shields.io/badge/Nuxt-black?style=plastic&logo=nuxt.js&logoColor=white) ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=plastic&logo=socket.io&badgeColor=010101) ![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=plastic&logo=apache&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=plastic&logo=mariadb&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=plastic&logo=mongodb&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=plastic&logo=mysql&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white) ![Inkscape](https://img.shields.io/badge/Inkscape-e0e0e0?style=plastic&logo=inkscape&logoColor=080A13) ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=plastic&logo=jira&logoColor=white) ![Vagrant](https://img.shields.io/badge/vagrant-%231563FF.svg?style=plastic&logo=vagrant&logoColor=white)
-## 📊 GitHub Stats :
-![](https://github-readme-stats.vercel.app/api?username=NilGems&theme=radical&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=NilGems&theme=radical&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
 ---
 [![](https://visitcount.itsvg.in/api?id=NilGems&icon=0&color=0)](https://visitcount.itsvg.in)

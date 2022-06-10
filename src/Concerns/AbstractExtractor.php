@@ -36,7 +36,8 @@ abstract class AbstractExtractor
      */
     protected Collection $data;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->data = new Collection([]);
     }
 
@@ -46,7 +47,8 @@ abstract class AbstractExtractor
      * @param $value
      * @return $this
      */
-    public function setData($key, $value): self {
+    public function setData($key, $value): self
+    {
         $this->data->put($key, $value);
         return $this;
     }
@@ -54,8 +56,9 @@ abstract class AbstractExtractor
      * Get accept mime types
      * @return array
      */
-    public function getAcceptMimeTypes(): array {
-        if(method_exists($this, 'mimeAccepts')) {
+    public function getAcceptMimeTypes(): array
+    {
+        if (method_exists($this, 'mimeAccepts')) {
             return $this->mimeAccepts();
         }
         return $this->mime_accepts;
@@ -65,7 +68,8 @@ abstract class AbstractExtractor
      * Get acceptable extensions
      * @return array
      */
-    public function getAcceptExtensions(): array {
+    public function getAcceptExtensions(): array
+    {
         return $this->extractor_supported_extension;
     }
     /**
@@ -76,7 +80,7 @@ abstract class AbstractExtractor
     public function hasMatchMimeType(string $mime_type): bool
     {
         $acceptable_mime_type = $this->getAcceptMimeTypes();
-        if(empty($acceptable_mime_type)) {
+        if (empty($acceptable_mime_type)) {
             return true;
         }
         return in_array(strtolower($mime_type), $acceptable_mime_type, true);
@@ -88,17 +92,22 @@ abstract class AbstractExtractor
      * @return string|null
      * @throws TextractException
      */
-    public function boot(string $file_path, array $data = []): ?string {
+    public function boot(string $file_path, array $data = []): ?string
+    {
         $this->file_path = $file_path;
         $this->data = $this->data->merge($data);
         $utilsService = app(UtilsService::class)->setFilePath($file_path);
         $utilsService->setFilePath($file_path);
         $this->current_mime_type = $utilsService->getFileMimeType();
-        if(!$this->hasMatchMimeType($this->current_mime_type)) {
-            throw new TextractException($this->extractor_name . ' unable to process the file. Please ensure the content of file is a ' . implode('/', $this->extractor_supported_extension) . 'file.');
+        if (!$this->hasMatchMimeType($this->current_mime_type)) {
+            throw new TextractException(
+                $this->extractor_name .
+                ' unable to process the file. Please ensure the content of file is a ' .
+                implode('/', $this->extractor_supported_extension) . 'file.'
+            );
         }
         $has_valid = $this->checkHaveProviderPackage();
-        if($has_valid) {
+        if ($has_valid) {
             return $this->getTextFromFile();
         }
         throw new TextractException($this->error_message);

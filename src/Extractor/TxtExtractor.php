@@ -6,6 +6,9 @@ use Nilgems\PhpTextract\Concerns\AbstractExtractor;
 
 class TxtExtractor extends AbstractExtractor
 {
+    /**
+     * @var bool|resource $file_handler
+     */
     private $file_handler;
 
     protected string $extractor_name = 'The txt extractor';
@@ -24,7 +27,7 @@ class TxtExtractor extends AbstractExtractor
      */
     protected function checkHaveProviderPackage(): bool
     {
-        if($file_reader = fopen($this->file_path, 'rb')) {
+        if ($file_reader = fopen($this->file_path, 'rb')) {
             $this->file_handler = $file_reader;
             return true;
         }
@@ -44,13 +47,19 @@ class TxtExtractor extends AbstractExtractor
         return $output;
     }
 
-    private function getFilteredText(string|bool $read_data): string
+    /**
+     * @param string|bool $read_data
+     * @return string
+     */
+    private function getFilteredText($read_data): string
     {
-        if($read_data) {
-            return match ($this->current_mime_type) {
-                "text/html" => strip_tags($read_data),
-                default => (string) $read_data,
-            };
+        if ($read_data) {
+            switch ($this->current_mime_type) {
+                case "text/html":
+                    return strip_tags($read_data);
+                default:
+                    return (string) $read_data;
+            }
         }
         return "";
     }

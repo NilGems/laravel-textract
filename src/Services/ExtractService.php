@@ -21,7 +21,8 @@ class ExtractService
      * Get file path
      * @return string
      */
-    public function getFilePath(): string {
+    public function getFilePath(): string
+    {
         return $this->file_path;
     }
 
@@ -29,7 +30,8 @@ class ExtractService
      * Get job id
      * @return string
      */
-    public function getJobId(): string {
+    public function getJobId(): string
+    {
         return $this->job_id;
     }
 }

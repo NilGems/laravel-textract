@@ -29,13 +29,14 @@ trait HasPhpWord
      * @param array $elements
      * @return array
      */
-    protected function getElementText(array $elements): array {
+    protected function getElementText(array $elements): array
+    {
         $docs = [];
         foreach ($elements as $element) {
-            if($element instanceof PhpWordElementText) {
+            if ($element instanceof PhpWordElementText) {
                 $docs[] = trim($element->getText());
             }
-            if($element instanceof PhpWordElementTextRun) {
+            if ($element instanceof PhpWordElementTextRun) {
                 $nested_data = $this->getElementText($element->getElements());
                 $docs = [...$docs, ...$nested_data];
             }
@@ -56,7 +57,7 @@ trait HasPhpWord
         $data = [];
         foreach ($rows as $row) {
             foreach ($row->getCells() as $cell) {
-                if($cell instanceof Cell) {
+                if ($cell instanceof Cell) {
                     $data[] = $this->getElementText($cell->getElements());
                 }
             }

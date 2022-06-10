@@ -4,6 +4,7 @@ namespace Nilgems\PhpTextract\Extractor;
 
 use Nilgems\PhpTextract\Concerns\AbstractExtractor;
 use thiagoalessio\TesseractOCR\TesseractOCR;
+use thiagoalessio\TesseractOCR\TesseractOcrException;
 
 class ImageExtractor extends AbstractExtractor
 {
@@ -33,13 +34,13 @@ class ImageExtractor extends AbstractExtractor
 
     /**
      * @return string
-     * @throws \thiagoalessio\TesseractOCR\TesseractOcrException
+     * @throws TesseractOcrException
      */
     protected function getTextFromFile(): string
     {
         $languages = $this->data->get('lang', []);
         $ocr = (new TesseractOCR($this->file_path));
-        if(!empty($languages)) {
+        if (!empty($languages)) {
             $ocr->lang(...$languages);
         }
         return $ocr->run();

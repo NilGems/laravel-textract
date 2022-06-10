@@ -4,6 +4,7 @@ namespace Nilgems\PhpTextract\Extractor;
 
 use Nilgems\PhpTextract\Concerns\AbstractExtractor;
 use Nilgems\PhpTextract\Extractor\Contracts\HasPhpWord;
+use PhpOffice\PhpWord\Exception\Exception;
 use PhpOffice\PhpWord\IOFactory;
 
 class RtfExtractor extends AbstractExtractor
@@ -23,7 +24,7 @@ class RtfExtractor extends AbstractExtractor
 
     /**
      * @return bool
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws Exception
      */
     protected function checkHaveProviderPackage(): bool
     {

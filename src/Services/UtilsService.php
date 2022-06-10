@@ -16,19 +16,28 @@ class UtilsService
     protected Collection $extractor_collection;
     protected array $supported_file_extensions;
 
-    public function setFilePath(string $file_path): self {
+    public function setFilePath(string $file_path): self
+    {
         $this->file_path = $file_path;
         $this->file_name = $this->getFileName();
         $this->file_extension = $this->getFileExtension();
         $this->file_mime_type = $this->getFileMimeType();
-        $this->extractor_collection = collect(array_keys(ServiceProvider::EXTRACTORS))->transform(fn($extractor) => app()->get('extractor-' . $extractor));
-        $this->supported_file_extensions = (clone $this->extractor_collection)->transform(fn(AbstractExtractor $extractor) => $extractor->getAcceptExtensions())->flatten()->toArray();
+        $this->extractor_collection = collect(array_keys(ServiceProvider::EXTRACTORS))
+            ->transform(function ($extractor) {
+                return app()->get('extractor-' . $extractor);
+            });
+        $this->supported_file_extensions = (clone $this->extractor_collection)
+            ->transform(function (AbstractExtractor $extractor) {
+                return $extractor->getAcceptExtensions();
+            })
+            ->flatten()
+            ->toArray();
         return $this;
     }
 
     public function isExists(): bool
     {
-        if(isset($this->file_path)) {
+        if (isset($this->file_path)) {
             return file_exists($this->file_path);
         }
         return false;
@@ -39,13 +48,21 @@ class UtilsService
      * @return AbstractExtractor
      * @throws TextractException
      */
-    public function getExtractor(): AbstractExtractor {
-        if(isset($this->file_mime_type)) {
-            $selected_extractor =  (clone $this->extractor_collection)->filter(fn(AbstractExtractor $extractor) => $extractor->hasMatchMimeType($this->file_mime_type));
-            if($selected_extractor->count() > 0) {
+    public function getExtractor(): AbstractExtractor
+    {
+        if (isset($this->file_mime_type)) {
+            $selected_extractor =  (clone $this->extractor_collection)
+                ->filter(function (AbstractExtractor $extractor) {
+                    return $extractor->hasMatchMimeType($this->file_mime_type);
+                });
+            if ($selected_extractor->count() > 0) {
                 return $selected_extractor->first();
             }
-            throw new TextractException("Invalid file format. Only support ".implode('/', $this->supported_file_extensions)." files");
+            throw new TextractException(
+                "Invalid file format. Only support ".
+                implode('/', $this->supported_file_extensions).
+                " files"
+            );
         }
         throw new TextractException("Please provide a file to extract text from that.");
     }
@@ -56,7 +73,7 @@ class UtilsService
      */
     public function getFileName(): ?string
     {
-        if(isset($this->file_path)) {
+        if (isset($this->file_path)) {
             return basename($this->file_path);
         }
         return null;
@@ -68,7 +85,7 @@ class UtilsService
      */
     public function getFileExtension(): ?string
     {
-        if(isset($this->file_path)) {
+        if (isset($this->file_path)) {
             return pathinfo($this->file_path, PATHINFO_EXTENSION);
         }
         return null;
@@ -80,7 +97,7 @@ class UtilsService
      */
     public function getFileMimeType(): ?string
     {
-        if(isset($this->file_path)) {
+        if (isset($this->file_path)) {
             return mime_content_type($this->file_path);
         }
         return null;

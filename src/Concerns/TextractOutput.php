@@ -33,8 +33,19 @@ class TextractOutput implements Arrayable
         return $this->collection->toArray();
     }
 
-    public function __get(string $key) {
+    public function __get(string $key)
+    {
         return $this->collection->get($key);
+    }
+
+    public function __set(string $key, string $value)
+    {
+        $this->collection->put($key, $value);
+    }
+
+    public function __isset(string $key)
+    {
+        return $this->collection->has($key);
     }
 
     /**

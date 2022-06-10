@@ -16,9 +16,10 @@ class PdfExtractor extends AbstractExtractor
     protected array $mime_accepts = ['application/pdf'];
     /**
      * Get the text from file
-     * @return null
+     * @return string|null
      */
-    protected function getTextFromFile() {
+    protected function getTextFromFile(): ?string
+    {
         $realpath = realpath($this->file_path);
         $process = new Process(['pdftotext', '-layout', $realpath , '-']);
         $process->start();

@@ -4,6 +4,7 @@ namespace Nilgems\PhpTextract\Extractor;
 
 use Nilgems\PhpTextract\Concerns\AbstractExtractor;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 class XlsExtractor extends AbstractExtractor
 {
@@ -37,7 +38,7 @@ class XlsExtractor extends AbstractExtractor
 
     /**
      * @return bool
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws Exception
      */
     protected function checkHaveProviderPackage(): bool
     {

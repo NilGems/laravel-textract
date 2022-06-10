@@ -50,7 +50,7 @@ class ConsoleExtractionService
      */
     protected function getExtractor(): AbstractExtractor
     {
-        if($this->utilsService->isExists()) {
+        if ($this->utilsService->isExists()) {
             return $this->utilsService->getExtractor();
         }
         throw new TextractException('File is not available in the path:' . $this->file_path);
