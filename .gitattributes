@@ -1,0 +1,11 @@
+*.doc linguist-detectable=false
+*.docx linguist-detectable=false
+*.ods linguist-detectable=false
+*.odt linguist-detectable=false
+*.pdf linguist-detectable=false
+*.png linguist-detectable=false
+*.rtf linguist-detectable=false
+*.txt linguist-detectable=false
+*.xls linguist-detectable=false
+*.xlsx linguist-detectable=false
+*.php linguist-detectable=true
