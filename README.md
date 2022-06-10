@@ -1,4 +1,4 @@
-## PHP Textract
+## Laravel Textract
 A laravel 9 package to extract text from files. This work is ispired by ["textract node"](https://www.npmjs.com/package/textract).
 
 ### Supported file formats
@@ -22,7 +22,7 @@ the current content type to work this package-
 
 ### Install
 ``` 
-composer require nilgems/php-textract
+composer require nilgems/laravel-textract
 ```
 ### Configuration
 You don't need to anything special for your laravel application to work with this

@@ -1,5 +1,5 @@
 {
-    "name": "nilgems/php-textract",
+    "name": "nilgems/laravel-textract",
     "description": "A text extraction package for laravel",
     "type": "library",
     "keywords": [
