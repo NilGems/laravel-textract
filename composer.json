@@ -1,6 +1,6 @@
 {
     "name": "nilgems/laravel-textract",
-    "description": "A text extraction package for laravel",
+    "description": "A Laravel 9 package to extract text from files like DOC, XL, Image, Pdf and more. I've developed this package by inspiring \"npm textract\".",
     "type": "library",
     "keywords": [
         "laravel",
@@ -29,13 +29,15 @@
         "ods"
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.4|^8.0",
         "ext-fileinfo": "*",
         "ext-zip": "*",
-        "symfony/process": "6.1",
+        "ext-xml": "*",
+        "ext-gd": "*",
+        "symfony/process": "^6.1",
         "phpoffice/phpspreadsheet": "^1.23",
         "phpoffice/phpword": "^0.18",
-        "laravel/framework": "^9.0"
+        "laravel/framework": "^8.0|^9.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6"
