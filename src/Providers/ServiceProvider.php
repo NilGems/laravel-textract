@@ -20,7 +20,7 @@ class ServiceProvider extends IlluminateServiceProvider
     /**
      * Extractors available in plugin
      */
-    public CONST EXTRACTORS = [
+    public const EXTRACTORS = [
         'pdf' => PdfExtractor::class,
         'doc' => DocExtractor::class,
         'docx' => DocxExtractor::class,
@@ -31,7 +31,8 @@ class ServiceProvider extends IlluminateServiceProvider
         'img' => ImageExtractor::class
     ];
 
-    public function boot(): void {
+    public function boot(): void
+    {
         $this->publishes([
             __DIR__ . '/../../config/textract.php' => config_path('textract.php')
         ]);

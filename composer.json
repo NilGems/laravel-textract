@@ -7,9 +7,9 @@
         "ext-fileinfo": "*",
         "ext-zip": "*",
         "symfony/process": "6.1",
-        "illuminate/console": "^9",
         "phpoffice/phpspreadsheet": "^1.23",
-        "phpoffice/phpword": "^0.18"
+        "phpoffice/phpword": "^0.18",
+        "laravel/framework": "^9.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6"

@@ -9,6 +9,11 @@ use PhpOffice\PhpWord\IOFactory;
 
 trait HasPhpWord
 {
+    /**
+     * @param string $file_path
+     * @param string $readerName
+     * @return string
+     */
     protected function getSectionsText(string $file_path, string $readerName = 'Word2007'): string
     {
         $data = [];
@@ -20,6 +25,10 @@ trait HasPhpWord
         return implode(" ", array_filter($data));
     }
 
+    /**
+     * @param array $elements
+     * @return array
+     */
     protected function getElementText(array $elements): array {
         $docs = [];
         foreach ($elements as $element) {
@@ -38,6 +47,10 @@ trait HasPhpWord
         return $docs;
     }
 
+    /**
+     * @param array $rows
+     * @return array
+     */
     protected function getTableRowText(array $rows): array
     {
         $data = [];

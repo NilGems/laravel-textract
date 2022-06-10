@@ -5,6 +5,7 @@ namespace Nilgems\PhpTextract\Extractor;
 use Nilgems\PhpTextract\Concerns\AbstractExtractor;
 use Nilgems\PhpTextract\Exceptions\TextractException;
 use Nilgems\PhpTextract\Extractor\Contracts\HasPhpWord;
+use PhpOffice\PhpWord\Exception\Exception;
 use PhpOffice\PhpWord\IOFactory;
 
 class DocExtractor extends AbstractExtractor
@@ -26,7 +27,7 @@ class DocExtractor extends AbstractExtractor
     /**
      * Check have provider package installed in the system
      * @return bool
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws Exception
      */
     protected function checkHaveProviderPackage(): bool
     {
