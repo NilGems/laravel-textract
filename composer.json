@@ -1,0 +1,40 @@
+{
+    "name": "nilgems/php-textract",
+    "description": "A text extraction package for laravel",
+    "type": "library",
+    "require": {
+        "php": "8.0",
+        "ext-fileinfo": "*",
+        "ext-zip": "*",
+        "symfony/process": "6.1",
+        "illuminate/console": "^9",
+        "phpoffice/phpspreadsheet": "^1.23",
+        "phpoffice/phpword": "^0.18"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nilgems\\PhpTextract\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nilgems\\PhpTextract\\Providers\\ServiceProvider"
+            ],
+            "aliases": {
+                "Textract":"Nilgems\\PhpTextract\\Textract"
+            }
+        }
+    },
+    "authors": [
+        {
+            "name": "Niladri Shekhar Mondal",
+            "email": "nldrmondal35@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
