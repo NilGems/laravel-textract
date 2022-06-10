@@ -40,7 +40,8 @@ Textract::run(string $file_path, [string $job_id],[array $extra_data]);
 ##### Example 1: 
 You can extract text from supported file format.
 
-I want to recommend you to use the extractor in [Laravel Queue Job](https://laravel.com/docs/9.x/queues#creating-jobs) from better performance. In PHP there have a limitation of maximum execution time and maximum memory limit, in queue the process will run in background via CLI and you can set unlimited(-1) ```max_execution_time``` and unlimited(-1) ```max_memory_limit```;
+It is recommended to use the extractor with [Laravel Queue Job](https://laravel.com/docs/9.x/queues#creating-jobs) from better performance. <br /><br />
+In ```php``` there have a restriction of execution time and memory limit defined in ```php.ini``` file with the option ```max_execution_time``` and ```memory_limit```. If file size is big, the process may kill forcefully when exceed the limit. You can use ```queue - database/redis``` or ```Laravel horizon``` to run the process in background.
 ```
 ........
 use Nilge\Textract\Textract;
@@ -74,25 +75,25 @@ Route::get('/textract', function(){
   - ext-zip
   - ext-gd or ext-imagick
   - ext-xml
-#### Tesseract OCR Installation
-- Ubuntu
-  - Update the system: ```sudo apt update```
-  - Add Tesseract OCR 5 PPA to your system: ```sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel```
-  - Install Tesseract on Ubuntu 20.04 | 18.04: ```sudo apt install -y tesseract-ocr```
-  - Once installation is complete update your system: ```sudo apt update```
-  - Verify the installation: ```tesseract --version```
-- Windows
-  - There are many [ways](https://github.com/tesseract-ocr/tesseract/wiki#windows) to install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) on your system, but if you just want something quick to get up and running, I recommend installing the [Capture2Text](https://chocolatey.org/packages/capture2text) package with [Chocolatey](https://chocolatey.org/). 
-  - Choco installation: ```choco install capture2text --version 5.0```
+### Tesseract OCR Installation
+#### <img src="https://raw.githubusercontent.com/NilGems/laravel-textract/master/blobs/ubuntu.png" width="12"  alt="Ubuntu" /> Ubuntu
+- Update the system: ```sudo apt update```
+- Add Tesseract OCR 5 PPA to your system: ```sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel```
+- Install Tesseract on Ubuntu 20.04 | 18.04: ```sudo apt install -y tesseract-ocr```
+- Once installation is complete update your system: ```sudo apt update```
+- Verify the installation: ```tesseract --version```
+#### <img src="https://raw.githubusercontent.com/NilGems/laravel-textract/master/blobs/windows.png" width="12"  alt="Ubuntu" /> Windows
+- There are many [ways](https://github.com/tesseract-ocr/tesseract/wiki#windows) to install [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) on your system, but if you just want something quick to get up and running, I recommend installing the [Capture2Text](https://chocolatey.org/packages/capture2text) package with [Chocolatey](https://chocolatey.org/). 
+- Choco installation: ```choco install capture2text --version 5.0```
 
-  **Note: Recent versions of [Capture2Text](https://chocolatey.org/packages/capture2text) stopped shipping the ```tesseract``` binary**
+**Note: Recent versions of [Capture2Text](https://chocolatey.org/packages/capture2text) stopped shipping the ```tesseract``` binary**
 
-#### PdfToText Installation
-- Ubuntu
-  - Update the system: ```sudo apt update```
-  - Install PdfToText on Ubuntu 20.04 | 18.04: ```sudo apt-get install poppler-utils```
-  - Verify the installation: ```pdftotext -v```
-- Windows
+### PdfToText Installation
+#### <img src="https://raw.githubusercontent.com/NilGems/laravel-textract/master/blobs/ubuntu.png" width="12"  alt="Ubuntu" /> Ubuntu
+- Update the system: ```sudo apt update```
+- Install PdfToText on Ubuntu 20.04 | 18.04: ```sudo apt-get install poppler-utils```
+- Verify the installation: ```pdftotext -v```
+#### <img src="https://raw.githubusercontent.com/NilGems/laravel-textract/master/blobs/windows.png" width="12"  alt="Ubuntu" /> Windows
   - Sorry but ```pdftotext``` available via [poppler](https://poppler.freedesktop.org/) and the [poppler](https://poppler.freedesktop.org/) is not available yet for windows. But you can install and [use the library by windows linux sub-system WLS](https://towardsdatascience.com/poppler-on-windows-179af0e50150). Alternatively, you can install [Laravel Homestead](https://laravel.com/docs/9.x/homestead) in your project and using vagrant virtualization you can run the project in ubuntu virtual server.
 
 ## License
