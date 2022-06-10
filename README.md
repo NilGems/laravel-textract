@@ -22,7 +22,7 @@ the current content type to work this package-
 
 ### Install
 ``` 
-composer require nilgems/textract:^0.1
+composer require nilgems/php-textract
 ```
 ### Configuration
 You don't need to anything special for your laravel application to work with this
