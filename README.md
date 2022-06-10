@@ -50,6 +50,15 @@ echo $output->word_count;
 # Display the extracted text with direct string conversion
 echo (string) $output;
 ```
+Run the extractor to any supported file:
+```
+Textract::run(string $file_path, [string $job_id],[array $extra_data]);
+```
+|   Option    |  Type  |   Default value    | Required |                                                                                    Description                                                                                     |
+|:-----------:|:------:|:------------------:|:--------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| $file_path  | String | _No default value_ |   Yes    |                                                                        Text extractable file absolute path.                                                                        |
+|   $job_id   | String |     ```NULL```     |    No    |                                  It's a optional parameter. Extraction **job id**. If this option is blank the plugin will auto create the **ID**                                  |
+| $extra_data | array  |         []         |    No    | It's a optional parameter. To pass extra parameter. If you are extracting a image file, you can mention languages by this **parameter**. ``` ['lang' => ['eng', 'jpn', 'spa']] ``` |
 
 ### Configuration
 
@@ -71,11 +80,8 @@ echo (string) $output;
     ...
   ]
   ```
-### Example
-Use the ```Nilge\Textract\Textract``` facade to run the extractor. 
-```
-Textract::run(string $file_path, [string $job_id],[array $extra_data]);
-```
+### Example 
+
 ##### Example 1: 
 You can extract text from supported file format.
 
@@ -83,8 +89,6 @@ It is recommended to use the extractor with [Laravel Queue Job](https://laravel.
 In ```php``` there have a restriction of execution time and memory limit defined in ```php.ini``` file with the option ```max_execution_time``` and ```memory_limit```. If file size is big, the process may kill forcefully when exceed the limit. You can use ```queue - database/redis``` or ```Laravel horizon``` to run the process in background.
 ```
 ........
-use Nilge\Textract\Textract;
-
 Route::get('/textract', function(){
     return Textract::run('/path/to/image/example.png');
 });
@@ -95,8 +99,6 @@ Route::get('/textract', function(){
 If you need to specify languages in image file for better extraction output from image file.
 ```
 ........
-use Nilge\Textract\Textract;
-
 Route::get('/textract', function(){
     return Textract::run('/path/to/image/example.png', null, [
       'lang' => ['eng', 'jpn', 'spa']
