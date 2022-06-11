@@ -23,11 +23,12 @@ check file content MIME type before execute.
 - **Image**
   - _jpeg_
   - _png_
+  - _gif_
 - **ODT**
 - **ODS**
 - **RTF**
 
-<img src="./blobs/warning.png?raw=true" alt="Note" width="12">***GIF*** and ***PPT*** support is under development. 
+<img src="./blobs/warning.png?raw=true" alt="Note" width="12">***PPT*** support is under development. 
 
 **We are working hard to make this laravel plugin useful. If you found any issue please add a post on discussion.**
 
