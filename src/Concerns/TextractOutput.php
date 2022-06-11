@@ -19,8 +19,8 @@ class TextractOutput implements Arrayable
     public function __construct(string $raw_output)
     {
         $this->collection = new Collection([
-            'text' => $raw_output,
-            'word_count' => str_word_count($raw_output, 0)
+            'text' => htmlspecialchars($raw_output, ENT_NOQUOTES, "UTF-8"),
+            'word_count' => str_word_count(utf8_decode($raw_output), 0)
         ]);
     }
 

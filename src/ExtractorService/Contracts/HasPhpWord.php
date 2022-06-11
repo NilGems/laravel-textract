@@ -1,8 +1,7 @@
 <?php
 
-namespace Nilgems\PhpTextract\Extractor\Contracts;
+namespace Nilgems\PhpTextract\ExtractorService\Contracts;
 
-use PhpOffice\PhpWord\Element\Cell;
 use PhpOffice\PhpWord\Element\Text as PhpWordElementText;
 use PhpOffice\PhpWord\Element\TextRun as PhpWordElementTextRun;
 use PhpOffice\PhpWord\IOFactory;
@@ -40,28 +39,8 @@ trait HasPhpWord
                 $nested_data = $this->getElementText($element->getElements());
                 $docs = [...$docs, ...$nested_data];
             }
-//            if($element instanceof PhpWordElementTable) {
-//                $nested_data = $this->getTableRowText($element->getRows());
-//                $docs = [...$docs, ...$nested_data];
-//            }
         }
         return $docs;
     }
 
-    /**
-     * @param array $rows
-     * @return array
-     */
-    protected function getTableRowText(array $rows): array
-    {
-        $data = [];
-        foreach ($rows as $row) {
-            foreach ($row->getCells() as $cell) {
-                if ($cell instanceof Cell) {
-                    $data[] = $this->getElementText($cell->getElements());
-                }
-            }
-        }
-        return $data;
-    }
 }

@@ -42,7 +42,8 @@
         "stechstudio/laravel-php-cs-fixer": "^3.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^v3.8.0"
+        "friendsofphp/php-cs-fixer": "^v3.8.0",
+        "phpunit/phpunit": "^9.5"
     },
     "license": "MIT",
     "autoload": {

@@ -3,39 +3,24 @@
 namespace Nilgems\PhpTextract\Providers;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use Nilgems\PhpTextract\Console\TextractCommand;
-use Nilgems\PhpTextract\Extractor\DocExtractor;
-use Nilgems\PhpTextract\Extractor\DocxExtractor;
-use Nilgems\PhpTextract\Extractor\ImageExtractor;
-use Nilgems\PhpTextract\Extractor\OdtExtractor;
-use Nilgems\PhpTextract\Extractor\RtfExtractor;
-use Nilgems\PhpTextract\Extractor\TxtExtractor;
-use Nilgems\PhpTextract\Extractor\XlsExtractor;
-use Nilgems\PhpTextract\Extractor\PdfExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\HtmlExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\ImageExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\MsOfficeDocExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\MsOfficeDocxExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\OpenOfficeDocument;
+use Nilgems\PhpTextract\ExtractorService\Extractors\OpenOfficeSpreadSheet;
+use Nilgems\PhpTextract\ExtractorService\Extractors\PdfExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\RtfExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\TxtExtractor;
+use Nilgems\PhpTextract\Services\ConsoleExtractionService;
 use Nilgems\PhpTextract\Services\ExtractService;
 use Nilgems\PhpTextract\Services\UtilsService;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
-    /**
-     * Extractors available in plugin
-     */
-    public const EXTRACTORS = [
-        'pdf' => PdfExtractor::class,
-        'doc' => DocExtractor::class,
-        'docx' => DocxExtractor::class,
-        'rtf' => RtfExtractor::class,
-        'xls' => XlsExtractor::class,
-        'odf' => OdtExtractor::class,
-        'txt' => TxtExtractor::class,
-        'img' => ImageExtractor::class
-    ];
-
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__ . '/../../config/textract.php' => config_path('textract.php')
-        ]);
+
     }
 
     /**
@@ -44,11 +29,15 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register(): void
     {
+        $this->publishes([__DIR__ . '/../../config/textract.php' => config_path('textract.php')]);
+        $this->mergeConfigFrom(__DIR__ . '/../../config/textract.php', 'textract');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'textract');
+
         $this->app->bind(UtilsService::class);
         $this->app->bind('textract', ExtractService::class);
+        $this->app->bind(ConsoleExtractionService::class);
 
         $this->registerExtractors();
-        $this->commands([ TextractCommand::class ]);
     }
 
     /**
@@ -57,9 +46,21 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     protected function registerExtractors(): void
     {
-        foreach (self::EXTRACTORS as $extractor_id => $extractor_class) {
-            $this->app->bind('extractor-' . $extractor_id, $extractor_class);
+        $extractors = [
+            HtmlExtractor::class,
+            ImageExtractor::class,
+            MsOfficeDocExtractor::class,
+            MsOfficeDocxExtractor::class,
+            OpenOfficeDocument::class,
+            OpenOfficeSpreadSheet::class,
+            PdfExtractor::class,
+            RtfExtractor::class,
+            TxtExtractor::class
+        ];
+        foreach ($extractors as $extractor) {
+            $this->app->bind($extractor);
         }
-        $this->app->tag(array_keys(self::EXTRACTORS), 'extractors');
+
+        $this->app->tag($extractors, 'extractors');
     }
 }

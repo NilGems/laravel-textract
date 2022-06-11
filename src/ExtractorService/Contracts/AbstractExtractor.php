@@ -1,6 +1,6 @@
 <?php
 
-namespace Nilgems\PhpTextract\Concerns;
+namespace Nilgems\PhpTextract\ExtractorService\Contracts;
 
 use Illuminate\Support\Collection;
 use Nilgems\PhpTextract\Exceptions\TextractException;
@@ -17,7 +17,7 @@ abstract class AbstractExtractor
      */
     protected string $error_message = "The extractor plugin is not installed in the system. Please install and try again.";
     /**
-     * Extractor name
+     * ExtractorService name
      * @var string $extractor_name
      */
     protected string $extractor_name = 'The extractor';

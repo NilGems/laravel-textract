@@ -3,9 +3,10 @@
 namespace Nilgems\PhpTextract\Services;
 
 use Illuminate\Support\Str;
-use Nilgems\PhpTextract\Concerns\AbstractExtractor;
 use Nilgems\PhpTextract\Concerns\TextractOutput;
 use Nilgems\PhpTextract\Exceptions\TextractException;
+use Nilgems\PhpTextract\ExtractorService\Contracts\AbstractExtractor;
+use Nilgems\PhpTextract\ExtractorService\Ocr\Contracts\TesseractOcrOptions;
 
 class ConsoleExtractionService
 {
@@ -29,30 +30,17 @@ class ConsoleExtractionService
      * Run the extractor
      * @param string $file_path
      * @param string|null $job_id
-     * @param array $data
+     * @param TesseractOcrOptions|null $ocrOptions
      * @return TextractOutput
      * @throws TextractException
      */
-    public function boot(string $file_path, string $job_id = null, array $data = []): TextractOutput
+    public function boot(string $file_path, string $job_id = null, TesseractOcrOptions $ocrOptions = null): TextractOutput
     {
         $this->file_path = $file_path;
         $this->job_id = (string) ($job_id ?? Str::uuid());
         $this->utilsService = app(UtilsService::class);
         $this->utilsService->setFilePath($this->file_path);
-        $output = $this->getExtractor()->boot($this->file_path, $data);
+        $output = $this->utilsService->getExtractor()->boot($this->utilsService);
         return new TextractOutput($output);
-    }
-
-    /**
-     * Get extractor
-     * @return AbstractExtractor
-     * @throws TextractException
-     */
-    protected function getExtractor(): AbstractExtractor
-    {
-        if ($this->utilsService->isExists()) {
-            return $this->utilsService->getExtractor();
-        }
-        throw new TextractException('File is not available in the path:' . $this->file_path);
     }
 }
