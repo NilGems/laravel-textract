@@ -20,7 +20,9 @@ class ServiceProvider extends IlluminateServiceProvider
 {
     public function boot(): void
     {
-
+        $this->publishes([
+            __DIR__ . '/../../config/textract.php' => config_path('textract.php')
+        ], 'textract');
     }
 
     /**
@@ -29,7 +31,6 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register(): void
     {
-        $this->publishes([__DIR__ . '/../../config/textract.php' => config_path('textract.php')]);
         $this->mergeConfigFrom(__DIR__ . '/../../config/textract.php', 'textract');
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'textract');
 

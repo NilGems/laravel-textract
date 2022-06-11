@@ -80,6 +80,10 @@ Textract::run(string $file_path, [string $job_id],[array $extra_data]);
     ...
   ]
   ```
+- To publish the ```config``` file, run:
+  ```
+  php artisan vendor:publish --tag=textract
+  ```
 ### Example 
 
 ##### Example 1: 
