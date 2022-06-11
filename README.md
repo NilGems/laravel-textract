@@ -52,7 +52,7 @@ echo (string) $output;
 ```
 Run the extractor to any supported file:
 ```
-Textract::run(string $file_path, [string $job_id],[array $extra_data]);
+Textract::run(string $file_path, [string $job_id],[TesseractOcrOptions $extra_data]);
 ```
 |   Option    |           Type            |   Default value    | Required |                                                                                                          Description                                                                                                           |
 |:-----------:|:-------------------------:|:------------------:|:--------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
