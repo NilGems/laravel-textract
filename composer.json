@@ -39,7 +39,9 @@
         "phpoffice/phpword": "^0.18",
         "laravel/framework": "^8.0|^9.0",
         "thiagoalessio/tesseract_ocr": "^2.12",
-        "stechstudio/laravel-php-cs-fixer": "^3.1"
+        "stechstudio/laravel-php-cs-fixer": "^3.1",
+        "html2text/html2text": "^4.3",
+        "lywzx/php-epub": "^0.1.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^v3.8.0",

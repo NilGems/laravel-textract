@@ -2,6 +2,7 @@
 
 namespace Nilgems\PhpTextract\ExtractorService\Extractors;
 
+use Html2Text\Html2Text;
 use Nilgems\PhpTextract\ExtractorService\Contracts\TextProcessorHaveFilter;
 use Nilgems\PhpTextract\ExtractorService\ExtractorCommonProcessors\TextProcessor;
 
@@ -21,7 +22,7 @@ class HtmlExtractor extends TextProcessor implements TextProcessorHaveFilter
     public function getFilteredText(string $output): string
     {
         if (!empty($output)) {
-            return strip_tags($output);
+            return (new Html2Text($output))->getText();
         }
         return "";
     }

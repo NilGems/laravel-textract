@@ -27,6 +27,7 @@ check file content MIME type before execute.
 - **ODT**
 - **ODS**
 - **RTF**
+- **EPUB**
 
 <img src="./blobs/warning.png?raw=true" alt="Note" width="12">***PPT*** support is under development. 
 
