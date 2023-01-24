@@ -34,7 +34,7 @@
         "ext-zip": "*",
         "ext-xml": "*",
         "ext-gd": "*",
-        "symfony/process": "^6.1",
+        "symfony/process": "*",
         "phpoffice/phpspreadsheet": "^1.23",
         "phpoffice/phpword": "^0.18",
         "laravel/framework": "^8.0|^9.0",
