@@ -7,6 +7,10 @@ use Nilgems\PhpTextract\ExtractorService\Contracts\AbstractTextExtractor;
 use PhpOffice\PhpPresentation\IOFactory;
 use PhpOffice\PhpPresentation\Shape;
 
+/**
+ * PHP PowerPointProcessor
+ * Read the document: https://phpoffice.github.io/PHPPresentation/usage/readers.html
+ */
 class PhpPowerPointProcessor extends AbstractTextExtractor
 {
     protected string $readerType = "PowerPoint2007";
@@ -18,6 +22,7 @@ class PhpPowerPointProcessor extends AbstractTextExtractor
             $presentation = $reader->load($file_path);
             return count($presentation->getAllSlides()) > 0;
         } catch (\Exception $exception) {
+            throw $exception;
             report($exception);
             throw new TextractException(trans('textract::processor.error_unable_to_read', [
                 'path' => $this->utilsService->getFilePath()
@@ -34,7 +39,7 @@ class PhpPowerPointProcessor extends AbstractTextExtractor
     {
         if ($this->hasReadable()) {
             $data_iterable = [];
-            $reader = IOFactory::createReader("PowerPoint2007");
+            $reader = IOFactory::createReader($this->readerType);
             $presentation = $reader->load($this->utilsService->getFilePath());
             foreach ($presentation->getAllSlides() as $slide) {
                 $shapes = $slide->getShapeCollection();
