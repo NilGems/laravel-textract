@@ -25,6 +25,7 @@ check file content MIME type before execute.
 - **ODT**
 - **ODS**
 - **RTF**
+- **PPTX** (NEW)
 
 **We are working hard to make this laravel plugin useful. If you found any issue please add a post on discussion.**
 
