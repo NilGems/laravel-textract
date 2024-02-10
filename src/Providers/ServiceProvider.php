@@ -7,6 +7,7 @@ use Nilgems\PhpTextract\ExtractorService\Extractors\HtmlExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\ImageExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\MsOfficeDocExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\MsOfficeDocxExtractor;
+use Nilgems\PhpTextract\ExtractorService\Extractors\MsOfficePptxExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\OpenOfficeDocument;
 use Nilgems\PhpTextract\ExtractorService\Extractors\OpenOfficeSpreadSheet;
 use Nilgems\PhpTextract\ExtractorService\Extractors\PdfExtractor;
@@ -52,6 +53,7 @@ class ServiceProvider extends IlluminateServiceProvider
             ImageExtractor::class,
             MsOfficeDocExtractor::class,
             MsOfficeDocxExtractor::class,
+            MsOfficePptxExtractor::class,
             OpenOfficeDocument::class,
             OpenOfficeSpreadSheet::class,
             PdfExtractor::class,
