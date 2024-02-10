@@ -3,7 +3,6 @@
 namespace Nilgems\PhpTextract\Providers;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use Nilgems\PhpTextract\ExtractorService\Extractors\EpubExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\HtmlExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\ImageExtractor;
 use Nilgems\PhpTextract\ExtractorService\Extractors\MsOfficeDocExtractor;
@@ -57,8 +56,7 @@ class ServiceProvider extends IlluminateServiceProvider
             OpenOfficeSpreadSheet::class,
             PdfExtractor::class,
             RtfExtractor::class,
-            TxtExtractor::class,
-            EpubExtractor::class
+            TxtExtractor::class
         ];
         foreach ($extractors as $extractor) {
             $this->app->bind($extractor);

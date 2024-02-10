@@ -39,8 +39,7 @@
         "phpoffice/phpword": "^0.18",
         "laravel/framework": "^10.0",
         "thiagoalessio/tesseract_ocr": "^2.12",
-        "html2text/html2text": "^4.3",
-        "lywzx/php-epub": "^0.1.2"
+        "html2text/html2text": "^4.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
