@@ -38,7 +38,11 @@ class TesseractOcrRun
         $ocr->withoutTempFiles();
         if ($ocrOptions) {
             foreach ($ocrOptions->toArray() as $option_key => $option_value) {
-                $ocr->{$option_key}(...$option_value);
+                if (is_array($option_value) || is_iterable($option_value)) {
+                    $ocr->{$option_key}(...$option_value);
+                } else {
+                    $ocr->{$option_key}($option_value);
+                }
             }
         }
         return $ocr;
@@ -50,11 +54,12 @@ class TesseractOcrRun
      */
     protected function hasOsExtension(): bool
     {
-        $process = new Process(['tesseract', '-v']);
+        $tesseractPath = config('textract.ocr.executable_path', 'tesseract'); // C:\Program Files\Tesseract-OCR\tesseract.exe
+        $process = new Process([$tesseractPath, '-v']);
         $process->start();
         $process->wait();
         $output = $this->getConsoleOutput($process);
-        $has_installed = (bool) preg_match('/tesseract([\s]+)([0-9.]+)/', $output);
+        $has_installed = (bool) preg_match('/tesseract([\s]+)((v)?[0-9.]+)/', $output);
         if ($has_installed) {
             return true;
         }

@@ -4,10 +4,8 @@ A [Laravel](https://laravel.com) package to extract text from files like DOC, Ex
 
 # Versions and compatibility
 
-- [Laravel 8](https://laravel.com) or higher is required.
-- [Php 7.4]() or higher is required
-
-### <img src="./blobs/danger.png?raw=true" alt="Note" width="18"> [Laravel 9](https://laravel.com) support is added.
+- [Laravel 10](https://laravel.com) or higher is required.
+- [Php 8.2]() or higher is required
 
 ### Supported file formats
 Following file formats is supported currently. You need to install proper extensions
@@ -27,9 +25,6 @@ check file content MIME type before execute.
 - **ODT**
 - **ODS**
 - **RTF**
-- **EPUB**
-
-<img src="./blobs/warning.png?raw=true" alt="Note" width="12">***PPT*** support is under development. 
 
 **We are working hard to make this laravel plugin useful. If you found any issue please add a post on discussion.**
 
