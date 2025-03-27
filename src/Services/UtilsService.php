@@ -4,9 +4,8 @@ namespace Nilgems\PhpTextract\Services;
 
 use Illuminate\Support\Collection;
 use Nilgems\PhpTextract\Exceptions\TextractException;
-use Nilgems\PhpTextract\ExtractorService\Contracts\AbstractExtractor;
 use Nilgems\PhpTextract\ExtractorService\Contracts\AbstractTextExtractor;
-use Nilgems\PhpTextract\Providers\ServiceProvider;
+use Nilgems\PhpTextract\ExtractorService\Options\PdfOptions;
 
 class UtilsService
 {
@@ -41,6 +40,7 @@ class UtilsService
      */
     protected array $supported_file_extensions = [];
 
+    protected ?PdfOptions $pdf_options = null;
     /**
      * Set file path
      * @param string $file_path
@@ -145,5 +145,23 @@ class UtilsService
             return mime_content_type($this->file_path);
         }
         return null;
+    }
+
+    /**
+     * @param PdfOptions $options
+     * @return $this
+     */
+    public function setPdfOptions(PdfOptions $options): self
+    {
+        $this->pdf_options = $options;
+        return $this;
+    }
+
+    /**
+     * @return PdfOptions|null
+     */
+    public function getPdfOptions(): ?PdfOptions
+    {
+        return $this->pdf_options;
     }
 }

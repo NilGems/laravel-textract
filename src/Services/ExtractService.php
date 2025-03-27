@@ -5,6 +5,7 @@ namespace Nilgems\PhpTextract\Services;
 use Illuminate\Support\Str;
 use Nilgems\PhpTextract\Concerns\TextractOutput;
 use Nilgems\PhpTextract\Exceptions\TextractException;
+use Nilgems\PhpTextract\ExtractorService\Options\PdfOptions;
 
 class ExtractService
 {
@@ -14,12 +15,12 @@ class ExtractService
     /**
      * @throws TextractException
      */
-    public function run(string $file_path, string $job_id = null): TextractOutput
+    public function run(string $file_path, string $job_id = null, ?PdfOptions $pdfOptions = null): TextractOutput
     {
         $this->file_path = $file_path;
         $this->job_id = (string) ($job_id ?? Str::uuid());
         return app(ConsoleExtractionService::class)
-            ->boot($this->file_path, $this->job_id);
+            ->boot($this->file_path, $this->job_id, $pdfOptions);
     }
 
     /**

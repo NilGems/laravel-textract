@@ -3,7 +3,7 @@
 namespace Nilgems\PhpTextract\ExtractorService\Ocr;
 
 use Nilgems\PhpTextract\Exceptions\TextractException;
-use Nilgems\PhpTextract\ExtractorService\Ocr\Contracts\TesseractOcrOptions;
+use Nilgems\PhpTextract\ExtractorService\Options\TesseractOcrOptions;
 use Nilgems\PhpTextract\Services\UtilsService;
 use Symfony\Component\Process\Process;
 use thiagoalessio\TesseractOCR\TesseractOCR;

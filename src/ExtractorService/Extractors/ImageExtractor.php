@@ -3,8 +3,8 @@
 namespace Nilgems\PhpTextract\ExtractorService\Extractors;
 
 use Nilgems\PhpTextract\ExtractorService\Contracts\AbstractTextExtractor;
-use Nilgems\PhpTextract\ExtractorService\Ocr\Contracts\TesseractOcrOptions;
 use Nilgems\PhpTextract\ExtractorService\Ocr\TesseractOcrRun;
+use Nilgems\PhpTextract\ExtractorService\Options\TesseractOcrOptions;
 
 class ImageExtractor extends AbstractTextExtractor
 {

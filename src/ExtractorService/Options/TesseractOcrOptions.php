@@ -1,14 +1,13 @@
 <?php
 
-namespace Nilgems\PhpTextract\ExtractorService\Ocr\Contracts;
+namespace Nilgems\PhpTextract\ExtractorService\Options;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Nilgems\PhpTextract\ExtractorService\Options\Contracts\AbstractOptions;
 
-class TesseractOcrOptions implements Arrayable
+class TesseractOcrOptions extends AbstractOptions implements Arrayable
 {
     protected array $options;
-
-
 
     public function __construct()
     {
