@@ -6,6 +6,7 @@ use Nilgems\PhpTextract\Exceptions\TextractException;
 use Nilgems\PhpTextract\ExtractorService\Contracts\AbstractTextExtractor;
 use PhpOffice\PhpPresentation\IOFactory;
 use PhpOffice\PhpPresentation\Shape;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 /**
  * PHP PowerPointProcessor
@@ -14,6 +15,11 @@ use PhpOffice\PhpPresentation\Shape;
 class PhpPowerPointProcessor extends AbstractTextExtractor
 {
     protected string $readerType = "PowerPoint2007";
+
+    /**
+     * @return bool
+     * @throws TextractException
+     */
     private function hasReadable(): bool
     {
         $file_path = $this->utilsService->getFilePath();
@@ -22,7 +28,6 @@ class PhpPowerPointProcessor extends AbstractTextExtractor
             $presentation = $reader->load($file_path);
             return count($presentation->getAllSlides()) > 0;
         } catch (\Exception $exception) {
-            throw $exception;
             report($exception);
             throw new TextractException(trans('textract::processor.error_unable_to_read', [
                 'path' => $this->utilsService->getFilePath()
@@ -33,7 +38,7 @@ class PhpPowerPointProcessor extends AbstractTextExtractor
 
     /**
      * @throws TextractException
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws Exception
      */
     protected function getExtractedText(): string
     {
