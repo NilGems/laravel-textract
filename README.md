@@ -4,7 +4,7 @@ A [Laravel](https://laravel.com) package to extract text from files like DOC, Ex
 
 # Versions and compatibility
 
-- [Laravel 10](https://laravel.com) or higher is required.
+- [Laravel 12](https://laravel.com) is now supported.
 - [Php 8.2]() or higher is required
 
 ### Supported file formats
