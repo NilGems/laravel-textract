@@ -50,13 +50,14 @@ echo (string) $output;
 ```
 Run the extractor to any supported file:
 ```
-Textract::run(string $file_path, [string $job_id],[TesseractOcrOptions $extra_data]);
+Textract::run(string $file_path, [string $job_id], [PdfOptions $pdfOption],[TesseractOcrOptions $ocrOption]);
 ```
-|   Option    |           Type            |   Default value    | Required |                                                                                                          Description                                                                                                           |
-|:-----------:|:-------------------------:|:------------------:|:--------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| $file_path  |       ```String```        | _No default value_ |   Yes    |                                                                                              Text extractable file absolute path.                                                                                              |
-|   $job_id   |       ```String```        |     ```NULL```     |    No    |                                                        It's a optional parameter. Extraction **job id**. If this option is blank the plugin will auto create the **ID**                                                        |
-| $extra_data | ```TesseractOcrOptions``` |     ```NULL```     |    No    | It's a optional parameter. To pass extra parameter. If you are extracting a image file, you can mention languages and more by this ```Nilgems\PhpTextract\ExtractorService\Ocr\Contracts\TesseractOcrOptions``` **parameter**. |
+|   Option   |           Type            |   Default value    | Required |                                                                                                          Description                                                                                                           |
+|:----------:|:-------------------------:|:------------------:|:--------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| $file_path |       ```String```        | _No default value_ |   Yes    |                                                                                              Text extractable file absolute path.                                                                                              |
+|  $job_id   |       ```String```        |     ```NULL```     |    No    |                                                        It's a optional parameter. Extraction **job id**. If this option is blank the plugin will auto create the **ID**                                                        |
+| $pdfOption | ```PdfOptions``` |     ```NULL```     |    No    | It's a optional parameter. To pass extra parameter. If you are extracting a pdf file, you can mention password and more by this ```Nilgems\PhpTextract\ExtractorService\Pdf\Contracts\PdfOptions``` **parameter**. |
+| $ocrOption | ```TesseractOcrOptions``` |     ```NULL```     |    No    | It's a optional parameter. To pass extra parameter. If you are extracting a image file, you can mention languages and more by this ```Nilgems\PhpTextract\ExtractorService\Ocr\Contracts\TesseractOcrOptions``` **parameter**. |
 
 ### Configuration
 
