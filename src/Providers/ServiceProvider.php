@@ -21,6 +21,7 @@ class ServiceProvider extends IlluminateServiceProvider
 {
     public function boot(): void
     {
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'textract');
         $this->publishes([
             __DIR__ . '/../../config/textract.php' => config_path('textract.php')
         ], 'textract');

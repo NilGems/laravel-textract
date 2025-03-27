@@ -1,6 +1,7 @@
 ### Composer template
 composer.phar
 .idea/*
+Zone.Identifier
 /vendor/
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control

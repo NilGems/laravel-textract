@@ -45,7 +45,7 @@ class PdfExtractor extends AbstractTextExtractor
         if ($has_extension) {
             return true;
         }
-        throw new TextractException(trans('extractor.error_pdf_of_extension_not_installed'));
+        throw new TextractException(trans('textract::extractor.error_pdf_of_extension_not_installed'));
     }
 
     /**
