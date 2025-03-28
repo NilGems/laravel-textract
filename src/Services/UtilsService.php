@@ -151,9 +151,11 @@ class UtilsService
      * @param PdfOptions $options
      * @return $this
      */
-    public function setPdfOptions(PdfOptions $options): self
+    public function setPdfOptions(?PdfOptions $options): self
     {
-        $this->pdf_options = $options;
+        if (!is_null($options)) {
+            $this->pdf_options = $options;
+        }
         return $this;
     }
 

@@ -34,7 +34,7 @@ return [
          | For more details please visit - https://github.com/thiagoalessio/tesseract-ocr-for-php#executable
          |
          */
-        'executable_path' => env('TEXTRACT_OCR_EXEC_PATH', null),
+        'executable_path' => env('TEXTRACT_OCR_EXEC_PATH', 'tesseract'),
 
         /*
          | -------------------------------------------------------------------------------------------------------------

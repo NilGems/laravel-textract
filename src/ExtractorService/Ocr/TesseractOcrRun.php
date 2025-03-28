@@ -35,6 +35,8 @@ class TesseractOcrRun
             $ocrOptions = new TesseractOcrOptions();
         }
         $ocr = new TesseractOCR($this->utilsService->getFilePath());
+        $ocr->psm(6);
+        $ocr->config('preserve_interword_spaces', '1');
         $ocr->withoutTempFiles();
         if ($ocrOptions) {
             foreach ($ocrOptions->toArray() as $option_key => $option_value) {

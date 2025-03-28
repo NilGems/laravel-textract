@@ -38,7 +38,7 @@
         "phpoffice/phpspreadsheet": "^1.23",
         "phpoffice/phpword": "^0.18",
         "laravel/framework": "^12.0",
-        "thiagoalessio/tesseract_ocr": "^2.12",
+        "thiagoalessio/tesseract_ocr": "^2.13",
         "html2text/html2text": "^4.3",
         "phpoffice/phppresentation": "^1.0"
     },
