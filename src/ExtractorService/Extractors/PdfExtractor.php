@@ -35,58 +35,60 @@ class PdfExtractor extends AbstractTextExtractor
         $params = ['pdftotext'];
         $file_path = $this->utilsService->getFilePath();
         $options = $this->utilsService->getPdfOptions();
-        if (!is_null($options->firstPage)) {
-            $params[] = '-f';
-            $params[] = $options->firstPage;
-        }
-        if (!is_null($options->lastPage)) {
-            $params[] = '-l';
-            $params[] = $options->lastPage;
-        }
-        if (!is_null($options->resolution)) {
-            $params[] = '-r';
-            $params[] = $options->resolution;
-        }
-        if (!is_null($options->xCoordinate)) {
-            $params[] = '-x';
-            $params[] = $options->xCoordinate;
-        }
-        if (!is_null($options->yCoordinate)) {
-            $params[] = '-y';
-            $params[] = $options->yCoordinate;
-        }
-        if (!is_null($options->widthOfCorpArea)) {
-            $params[] = '-W';
-            $params[] = $options->widthOfCorpArea;
-        }
-        if (!is_null($options->heightOfCorpArea)) {
-            $params[] = '-H';
-            $params[] = $options->heightOfCorpArea;
-        }
-        if ($options->layoutModeEnabled) {
-            $params[] = '-layout';
-        }
-        if (!is_null($options->fixedPitch)) {
-            $params[] = '-fixed';
-            $params[] = $options->fixedPitch;
-        }
-        if ($options->rawEnabled) {
-            $params[] = '-raw';
-        }
-        if (!is_null($options->encodingName)) {
-            $params[] = '-enc';
-            $params[] = $options->encodingName;
-        }
-        if ($options->noPageBreaksEnabled) {
-            $params[] = '-nopgbrk';
-        }
-        if (!is_null($options->ownerPassword)) {
-            $params[] = '-opw';
-            $params[] = $options->ownerPassword;
-        }
-        if (!is_null($options->ownerPassword)) {
-            $params[] = '-upw';
-            $params[] = $options->userPassword;
+        if (!empty($options)) {
+            if (!is_null($options?->firstPage)) {
+                $params[] = '-f';
+                $params[] = $options?->firstPage;
+            }
+            if (!is_null($options?->lastPage)) {
+                $params[] = '-l';
+                $params[] = $options?->lastPage;
+            }
+            if (!is_null($options?->resolution)) {
+                $params[] = '-r';
+                $params[] = $options->resolution;
+            }
+            if (!is_null($options?->xCoordinate)) {
+                $params[] = '-x';
+                $params[] = $options->xCoordinate;
+            }
+            if (!is_null($options?->yCoordinate)) {
+                $params[] = '-y';
+                $params[] = $options->yCoordinate;
+            }
+            if (!is_null($options?->widthOfCorpArea)) {
+                $params[] = '-W';
+                $params[] = $options->widthOfCorpArea;
+            }
+            if (!is_null($options?->heightOfCorpArea)) {
+                $params[] = '-H';
+                $params[] = $options->heightOfCorpArea;
+            }
+            if ($options?->layoutModeEnabled) {
+                $params[] = '-layout';
+            }
+            if (!is_null($options?->fixedPitch)) {
+                $params[] = '-fixed';
+                $params[] = $options->fixedPitch;
+            }
+            if ($options?->rawEnabled) {
+                $params[] = '-raw';
+            }
+            if (!is_null($options?->encodingName)) {
+                $params[] = '-enc';
+                $params[] = $options->encodingName;
+            }
+            if ($options?->noPageBreaksEnabled) {
+                $params[] = '-nopgbrk';
+            }
+            if (!is_null($options?->ownerPassword)) {
+                $params[] = '-opw';
+                $params[] = $options->ownerPassword;
+            }
+            if (!is_null($options?->ownerPassword)) {
+                $params[] = '-upw';
+                $params[] = $options->userPassword;
+            }
         }
         $params[] = $file_path;
         $params[] = '-';
